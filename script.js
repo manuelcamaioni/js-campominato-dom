@@ -16,7 +16,7 @@ let inGame = true;
 for(let i = 1; i <= 100; i++){
     const divElement = getElement('div', 'cell');
     if(bombList.includes(i)){
-        divElement.innerHTML += '<i class="fa-solid fa-bomb"></i>';
+        divElement.innerHTML += '<i class="fa-solid fa-bomb d-none"></i>';
         divElement.classList.add('can-explode');
     }else{
         divElement.classList.add('can-be-activated');
@@ -28,6 +28,7 @@ for(let i = 1; i <= 100; i++){
             
             if(bombList.includes(i)){
                 inGame = false;
+                divElement.innerHTML += '<i class="fa-solid fa-bomb"></i>';
                 divElement.classList.add('explode');
                 console.log(parseInt(i) + '!!!');
                 console.log(`Hai perso! Punteggio: ${rightCounter}`);
