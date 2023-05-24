@@ -1,0 +1,53 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Cabin', sans-serif;
+    font-family: 'Fira Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'PT Sans', sans-serif;
+    color: white;
+    height: 100vh;
+    background-color: rgb(32, 32, 32);
+}
+
+main{
+    padding: 2rem 0;
+}
+
+footer{
+    padding: 3rem 0;
+    background-color: rgb(49, 49, 49);
+}
+
+img{
+    mix-blend-mode: color;
+}
+
+.grid{
+    width: 700px;
+    height: 700px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.cell, .grid{
+    border: 1px solid rgba( 255, 255, 255, .6);
+}
+
+.cell{
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color .5s;
+    cursor: pointer;
+}
