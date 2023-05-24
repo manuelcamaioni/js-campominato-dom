@@ -11,29 +11,33 @@
 const gridElement = document.querySelector('div.grid');
 const bombList = bombGenerator('bombList', 16, 100);
 const allDivElements = document.querySelectorAll('div.cell');
-
+let inGame = true;
 for(let i = 1; i <= 100; i++){
     const divElement = getElement('div', 'cell');
     divElement.innerHTML += i;
-    if(bombList.includes(i)){
-        divElement.addEventListener('click', function click (){
-            console.log(parseInt(divElement.innerHTML));
+    
+    divElement.addEventListener('click', function gameEvent(){
+        if(inGame === true){
+            if(bombList.includes(i)){
+            inGame = false;
             divElement.classList.add('explode');
-            divElement.removeEventListener('click', click);
+            console.log(parseInt(divElement.innerHTML) + '!!!');
+            console.log('Hai perso!');
+            } else{
+                divElement.classList.add('active');
+                console.log(parseInt(divElement.innerHTML));
+            }
+        } else{
+            
+            return;
+        }
+
         });
         
-    } 
-    divElement.addEventListener('click', function click (){
-    divElement.classList.add('active');
-       
-    console.log(parseInt(divElement.innerHTML));
-
-
-    });
-
     gridElement.appendChild(divElement);
     
 }
+
 
 /**
  * 
