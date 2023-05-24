@@ -13,7 +13,7 @@ const resultElement = getElement('span', 'result');
 
 btnElement.addEventListener('click', function(){
     mainElement.innerHTML = '';
-    resultElement.innerHTML = '';           //* at each event on the button it resets three dom elements
+    resultElement.innerHTML = '';           //! at each event on the button it resets three dom elements
     gridElement.innerHTML = '';
     mainElement.appendChild(gridElement);
     const bombList = bombGenerator('bombList', 16, 100);
@@ -82,7 +82,7 @@ function getElement(tagName, className){
  * @param {string} nameArray // name of the variable used for the array
  * @param {number} totalElements // total numbers of the elements of the array
  * @param {number} maxGenerable  // maximum rrange of random numbers generated
- * @returns 
+ * @returns // an array of different numbers
  */
 
 function bombGenerator(nameArray, totalElements, maxGenerable){
