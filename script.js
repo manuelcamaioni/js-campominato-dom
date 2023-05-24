@@ -14,22 +14,24 @@ const allDivElements = document.querySelectorAll('div.cell');
 let inGame = true;
 for(let i = 1; i <= 100; i++){
     const divElement = getElement('div', 'cell');
-    divElement.innerHTML += i;
+    if(bombList.includes(i)){
+        divElement.innerHTML += '<i class="fa-solid fa-bomb"></i>';
+    }
     
     divElement.addEventListener('click', function gameEvent(){
         if(inGame === true){
             if(bombList.includes(i)){
-            inGame = false;
-            divElement.classList.add('explode');
-            console.log(parseInt(divElement.innerHTML) + '!!!');
-            console.log('Hai perso!');
+                inGame = false;
+                divElement.classList.add('explode');
+                console.log(parseInt(i) + '!!!');
+                console.log('Hai perso!');
             } else{
                 divElement.classList.add('active');
-                console.log(parseInt(divElement.innerHTML));
+                console.log(parseInt(i));
             }
         } else{
             
-            return;
+          return;
         }
 
         });
