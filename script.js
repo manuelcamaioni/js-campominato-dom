@@ -8,18 +8,24 @@
 
 
 
-const gridElement = document.querySelector('div.grid');
-const bombList = bombGenerator('bombList', 16, 100);
-let rightCounter = 0;
-let inGame = true;
 
+
+
+
+const btnElement = document.getElementById('play-button');
+const mainElement = document.querySelector('main');
+const gridElement = getElement('div', 'grid');
+
+btnElement.addEventListener('click', function(){
+gridElement.innerHTML ='';
+mainElement.appendChild(gridElement);
+const bombList = bombGenerator('bombList', 16, 100);
+let inGame = true;
+let rightCounter = 0;
 for(let i = 1; i <= 100; i++){
     const divElement = getElement('div', 'cell');
     if(bombList.includes(i)){
         divElement.innerHTML += '<i class="fa-solid fa-bomb d-none"></i>';
-        divElement.classList.add('can-explode');
-    }else{
-        divElement.classList.add('can-be-activated');
     }
     
     
@@ -33,8 +39,11 @@ for(let i = 1; i <= 100; i++){
                 console.log(parseInt(i) + '!!!');
                 console.log(`Hai perso! Punteggio: ${rightCounter}`);
             } else{
+                
+                if(!divElement.classList.contains('active')){
+                    ++rightCounter;
+                }
                 divElement.classList.add('active');
-                ++rightCounter;
                 console.log(parseInt(i));
             }
             
@@ -53,7 +62,7 @@ for(let i = 1; i <= 100; i++){
     gridElement.appendChild(divElement);
     
 }
-
+});
 
 /**
  * 
