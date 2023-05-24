@@ -30,7 +30,7 @@ for(let i = 1; i <= 100; i++){
                 inGame = false;
                 divElement.classList.add('explode');
                 console.log(parseInt(i) + '!!!');
-                console.log('Hai perso!');
+                console.log(`Hai perso! Punteggio: ${rightCounter}`);
             } else{
                 divElement.classList.add('active');
                 ++rightCounter;
@@ -40,7 +40,7 @@ for(let i = 1; i <= 100; i++){
             if(rightCounter === 100 - bombList.length){
                 inGame = false;
                 divElement.classList.add('active');
-                console.log('Hai vinto!');
+                console.log(`HAI VINTO DAJEEEE! Punteggio: ${rightCounter}`);
             }
         }
         else{
