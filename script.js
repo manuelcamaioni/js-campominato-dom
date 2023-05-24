@@ -1,3 +1,26 @@
+// Consegna
+// Copiamo la griglia fatta ieri nella nuova repo e aggiungiamo la logica del gioco (attenzione: non bisogna copiare tutta la cartella dell'esercizio ma solo l'index.html, e le cartelle js/ css/ con i relativi script e fogli di stile, per evitare problemi con l'inizializzazione di git).
+// Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: le bombe.
+// Attenzione: nella stessa cella può essere posizionata al massimo una bomba, perciò nell’array delle bombe non potranno esserci due numeri uguali.
+// In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina. Altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.
+// La partita termina quando il giocatore clicca su una bomba o quando raggiunge il numero massimo possibile di numeri consentiti (ovvero quando ha rivelato tutte le celle che non sono bombe).
+// Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha cliccato su una cella che non era una bomba.
+
+
+
+const gridElement = document.querySelector('div.grid');
+
+for(let i = 1; i <= 100; i++){
+    const divElement = getElement('div', 'cell');
+    divElement.innerHTML += i;
+    gridElement.appendChild(divElement);
+    divElement.addEventListener('click', function(){
+        divElement.classList.add('active');
+        console.log(parseInt(divElement.innerHTML));
+
+    });
+}
+
 /**
  * 
  * Creates a DOM element
@@ -13,11 +36,18 @@ function getElement(tagName, className){
     return childElement;
 }
 
+function bombGenerator(totalElements, maxGenerable){
+    const bombList = [];
 
-const gridElement = document.querySelector('div.grid');
+    while(bombList.length < totalElements){
+        const newElement = Math.floor(Math.random() * maxGenerable + 1);
+        if(!bombList.includes(newElement)){
+            bombList.push(newElement);
+        }
+    }
+    console.log(bombList);
+    return bombList;
 
-for(let i = 1; i <= 100; i++){
-    const divElement = getElement('div', 'cell');
-    divElement.innerHTML += i;
-    gridElement.appendChild(divElement);
 }
+
+bombGenerator(16, 100);
