@@ -10,6 +10,7 @@ const btnElement = document.getElementById('play-button');
 const mainElement = document.querySelector('main');
 const gridElement = getElement('div', 'grid');
 const resultElement = getElement('span', 'result');
+const allBombs = [];
 
 btnElement.addEventListener('click', function(){
     mainElement.innerHTML = '';
@@ -23,6 +24,8 @@ btnElement.addEventListener('click', function(){
         const divElement = getElement('div', 'cell');
         if(bombList.includes(i)){
             divElement.innerHTML += '<i class="fa-solid fa-bomb d-none"></i>';
+            divElement.classList.add('can-explode');
+            allBombs.push(divElement);
         }
     
     
@@ -31,8 +34,22 @@ btnElement.addEventListener('click', function(){
             
             if(bombList.includes(i)){
                 inGame = false;
-                divElement.innerHTML += '<i class="fa-solid fa-bomb"></i>';
-                divElement.classList.add('explode');
+                
+                // for(let b = 0; b < bombList.length; b++){
+                //     allBombs.classList.add('explode');
+                //     allBombs.innerHTML += `<i class="fa-solid fa-bomb"></i>`;
+                // }
+                // allBombs.innerHTML += `<i class="fa-solid fa-bomb"></i>`;
+                // allBombs.classList.remove('d-none');
+                // *this.innerHTML += `<i class="fa-solid fa-bomb"></i>`;
+                // *this.classList.add('explode');
+
+
+                for(let index = 0; index < allBombs.length; index++){
+                    allBombs[index].innerHTML += `<i class="fa-solid fa-bomb"></i>`;
+                    allBombs[index].classList.add('explode');
+                }
+                
                 resultElement.innerHTML += `Hai perso! PUNTEGGIO: ${rightCounter}`;
                 mainElement.appendChild(resultElement);
             }else {
@@ -97,3 +114,4 @@ function bombGenerator(nameArray, totalElements, maxGenerable){
     return nameArray;
 
 }
+
