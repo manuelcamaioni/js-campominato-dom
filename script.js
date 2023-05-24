@@ -11,6 +11,8 @@ const mainElement = document.querySelector('main');
 const gridElement = getElement('div', 'grid');
 const resultElement = getElement('span', 'result');
 btnElement.addEventListener('click', function(){
+mainElement.innerHTML = '';
+resultElement.innerHTML = '';
 gridElement.innerHTML = '';
 mainElement.appendChild(gridElement);
 const bombList = bombGenerator('bombList', 16, 100);
