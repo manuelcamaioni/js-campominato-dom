@@ -6,18 +6,12 @@
 // La partita termina quando il giocatore clicca su una bomba o quando raggiunge il numero massimo possibile di numeri consentiti (ovvero quando ha rivelato tutte le celle che non sono bombe).
 // Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha cliccato su una cella che non era una bomba.
 
-
-
-
-
-
-
 const btnElement = document.getElementById('play-button');
 const mainElement = document.querySelector('main');
 const gridElement = getElement('div', 'grid');
-
+const resultElement = getElement('span', 'result');
 btnElement.addEventListener('click', function(){
-gridElement.innerHTML ='';
+gridElement.innerHTML = '';
 mainElement.appendChild(gridElement);
 const bombList = bombGenerator('bombList', 16, 100);
 let inGame = true;
@@ -29,15 +23,17 @@ for(let i = 1; i <= 100; i++){
     }
     
     
-    divElement.addEventListener('click', function gameEvent(){
+    divElement.addEventListener('click', function(){
         if(inGame === true){
             
             if(bombList.includes(i)){
                 inGame = false;
                 divElement.innerHTML += '<i class="fa-solid fa-bomb"></i>';
                 divElement.classList.add('explode');
-                console.log(parseInt(i) + '!!!');
-                console.log(`Hai perso! Punteggio: ${rightCounter}`);
+                resultElement.innerHTML += `Hai perso! PUNTEGGIO: ${rightCounter}`;
+                mainElement.appendChild(resultElement);
+                // console.log(parseInt(i) + '!!!');
+                // console.log(`Hai perso! Punteggio: ${rightCounter}`);
             } else{
                 
                 if(!divElement.classList.contains('active')){
@@ -49,8 +45,10 @@ for(let i = 1; i <= 100; i++){
             
             if(rightCounter === 100 - bombList.length){
                 inGame = false;
+                resultElement.innerHTML += `Hai vinto! PUNTEGGIO: ${rightCounter}`;
+                mainElement.appendChild(resultElement);
                 divElement.classList.add('active');
-                console.log(`HAI VINTO DAJEEEE! Punteggio: ${rightCounter}`);
+                // console.log(`HAI VINTO DAJEEEE! Punteggio: ${rightCounter}`);
             }
         }
         else{
@@ -91,7 +89,6 @@ function bombGenerator(nameArray, totalElements, maxGenerable){
             nameArray.push(newElement);
         }
     }
-    console.log(nameArray);
     return nameArray;
 
 }

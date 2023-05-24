@@ -82,3 +82,12 @@ img{
 #play-button:hover{
     background-color: rgb(58, 58, 114);
 }
+
+.result{
+    position: absolute;
+    top: 40%;
+    left: 80%;
+    background-color: rgb(73, 73, 104);
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+}
