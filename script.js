@@ -10,16 +10,22 @@
 
 const gridElement = document.querySelector('div.grid');
 const bombList = bombGenerator('bombList', 16, 100);
-const allDivElements = document.querySelectorAll('div.cell');
+let rightCounter = 0;
 let inGame = true;
+
 for(let i = 1; i <= 100; i++){
     const divElement = getElement('div', 'cell');
     if(bombList.includes(i)){
         divElement.innerHTML += '<i class="fa-solid fa-bomb"></i>';
+        divElement.classList.add('can-explode');
+    }else{
+        divElement.classList.add('can-be-activated');
     }
+    
     
     divElement.addEventListener('click', function gameEvent(){
         if(inGame === true){
+            
             if(bombList.includes(i)){
                 inGame = false;
                 divElement.classList.add('explode');
@@ -27,11 +33,18 @@ for(let i = 1; i <= 100; i++){
                 console.log('Hai perso!');
             } else{
                 divElement.classList.add('active');
+                ++rightCounter;
                 console.log(parseInt(i));
             }
-        } else{
             
-          return;
+            if(rightCounter === 100 - bombList.length){
+                inGame = false;
+                divElement.classList.add('active');
+                console.log('Hai vinto!');
+            }
+        }
+        else{
+            return;
         }
 
         });

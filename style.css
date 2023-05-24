@@ -63,3 +63,11 @@ img{
 .explode{
     background-color: rgb(233, 63, 63);
 }
+
+.can-explode{
+    opacity: 1;
+}
+
+.can-be-activated{
+    opacity: 1;
+}
