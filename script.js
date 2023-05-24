@@ -10,22 +10,27 @@
 
 const gridElement = document.querySelector('div.grid');
 const bombList = bombGenerator('bombList', 16, 100);
+const allDivElements = document.querySelectorAll('div.cell');
 
 for(let i = 1; i <= 100; i++){
     const divElement = getElement('div', 'cell');
     divElement.innerHTML += i;
     if(bombList.includes(i)){
-        divElement.addEventListener('click', function(){
+        divElement.addEventListener('click', function click (){
+            console.log(parseInt(divElement.innerHTML));
             divElement.classList.add('explode');
+            divElement.removeEventListener('click', click);
         });
         
-    } else {
-        divElement.addEventListener('click', function(){
-        divElement.classList.add('active');
-        console.log(parseInt(divElement.innerHTML));
+    } 
+    divElement.addEventListener('click', function click (){
+    divElement.classList.add('active');
+       
+    console.log(parseInt(divElement.innerHTML));
+
 
     });
-    }
+
     gridElement.appendChild(divElement);
     
 }
