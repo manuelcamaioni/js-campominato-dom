@@ -9,16 +9,25 @@
 
 
 const gridElement = document.querySelector('div.grid');
+const bombList = bombGenerator('bombList', 16, 100);
 
 for(let i = 1; i <= 100; i++){
     const divElement = getElement('div', 'cell');
     divElement.innerHTML += i;
-    gridElement.appendChild(divElement);
-    divElement.addEventListener('click', function(){
+    if(bombList.includes(i)){
+        divElement.addEventListener('click', function(){
+            divElement.classList.add('explode');
+        });
+        
+    } else {
+        divElement.addEventListener('click', function(){
         divElement.classList.add('active');
         console.log(parseInt(divElement.innerHTML));
 
     });
+    }
+    gridElement.appendChild(divElement);
+    
 }
 
 /**
@@ -36,18 +45,19 @@ function getElement(tagName, className){
     return childElement;
 }
 
-function bombGenerator(totalElements, maxGenerable){
-    const bombList = [];
 
-    while(bombList.length < totalElements){
+
+
+function bombGenerator(nameArray, totalElements, maxGenerable){
+    nameArray = [];
+
+    while(nameArray.length < totalElements){
         const newElement = Math.floor(Math.random() * maxGenerable + 1);
-        if(!bombList.includes(newElement)){
-            bombList.push(newElement);
+        if(!nameArray.includes(newElement)){
+            nameArray.push(newElement);
         }
     }
-    console.log(bombList);
-    return bombList;
+    console.log(nameArray);
+    return nameArray;
 
 }
-
-bombGenerator(16, 100);
