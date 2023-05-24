@@ -13,6 +13,7 @@ const resultElement = getElement('span', 'result');
 const allBombs = [];
 
 btnElement.addEventListener('click', function(){
+    console.clear();
     mainElement.innerHTML = '';
     resultElement.innerHTML = '';           //! at each event on the button it resets three dom elements
     gridElement.innerHTML = '';
@@ -49,9 +50,10 @@ btnElement.addEventListener('click', function(){
                     allBombs[index].innerHTML += `<i class="fa-solid fa-bomb"></i>`;
                     allBombs[index].classList.add('explode');
                 }
-                
+
                 resultElement.innerHTML += `Hai perso! PUNTEGGIO: ${rightCounter}`;
                 mainElement.appendChild(resultElement);
+                
             }else {
                 
                 if(!divElement.classList.contains('active')){
@@ -66,6 +68,7 @@ btnElement.addEventListener('click', function(){
                 resultElement.innerHTML += `Hai vinto! PUNTEGGIO: ${rightCounter}`;
                 mainElement.appendChild(resultElement);
                 divElement.classList.add('active');
+               
             }
         }else{
             return;
