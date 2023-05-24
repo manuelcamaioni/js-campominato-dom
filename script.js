@@ -10,19 +10,20 @@ const btnElement = document.getElementById('play-button');
 const mainElement = document.querySelector('main');
 const gridElement = getElement('div', 'grid');
 const resultElement = getElement('span', 'result');
+
 btnElement.addEventListener('click', function(){
-mainElement.innerHTML = '';
-resultElement.innerHTML = '';
-gridElement.innerHTML = '';
-mainElement.appendChild(gridElement);
-const bombList = bombGenerator('bombList', 16, 100);
-let inGame = true;
-let rightCounter = 0;
-for(let i = 1; i <= 100; i++){
-    const divElement = getElement('div', 'cell');
-    if(bombList.includes(i)){
-        divElement.innerHTML += '<i class="fa-solid fa-bomb d-none"></i>';
-    }
+    mainElement.innerHTML = '';
+    resultElement.innerHTML = '';           //* at each event on the button it resets three dom elements
+    gridElement.innerHTML = '';
+    mainElement.appendChild(gridElement);
+    const bombList = bombGenerator('bombList', 16, 100);
+    let inGame = true;
+    let rightCounter = 0;
+    for(let i = 1; i <= 100; i++){
+        const divElement = getElement('div', 'cell');
+        if(bombList.includes(i)){
+            divElement.innerHTML += '<i class="fa-solid fa-bomb d-none"></i>';
+        }
     
     
     divElement.addEventListener('click', function(){
@@ -36,7 +37,7 @@ for(let i = 1; i <= 100; i++){
                 mainElement.appendChild(resultElement);
                 // console.log(parseInt(i) + '!!!');
                 // console.log(`Hai perso! Punteggio: ${rightCounter}`);
-            } else{
+            }else {
                 
                 if(!divElement.classList.contains('active')){
                     ++rightCounter;
@@ -52,12 +53,11 @@ for(let i = 1; i <= 100; i++){
                 divElement.classList.add('active');
                 // console.log(`HAI VINTO DAJEEEE! Punteggio: ${rightCounter}`);
             }
-        }
-        else{
+        }else{
             return;
         }
 
-        });
+    });
         
     gridElement.appendChild(divElement);
     
@@ -80,7 +80,13 @@ function getElement(tagName, className){
 }
 
 
-
+/**
+ * Creates an array of different Numbers in a definite set of elements
+ * @param {string} nameArray // name of the variable used for the array
+ * @param {number} totalElements // total numbers of the elements of the array
+ * @param {number} maxGenerable  // maximum rrange of random numbers generated
+ * @returns 
+ */
 
 function bombGenerator(nameArray, totalElements, maxGenerable){
     nameArray = [];
