@@ -35,8 +35,6 @@ btnElement.addEventListener('click', function(){
                 divElement.classList.add('explode');
                 resultElement.innerHTML += `Hai perso! PUNTEGGIO: ${rightCounter}`;
                 mainElement.appendChild(resultElement);
-                // console.log(parseInt(i) + '!!!');
-                // console.log(`Hai perso! Punteggio: ${rightCounter}`);
             }else {
                 
                 if(!divElement.classList.contains('active')){
@@ -51,7 +49,6 @@ btnElement.addEventListener('click', function(){
                 resultElement.innerHTML += `Hai vinto! PUNTEGGIO: ${rightCounter}`;
                 mainElement.appendChild(resultElement);
                 divElement.classList.add('active');
-                // console.log(`HAI VINTO DAJEEEE! Punteggio: ${rightCounter}`);
             }
         }else{
             return;
