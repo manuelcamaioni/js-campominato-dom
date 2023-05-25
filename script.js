@@ -10,21 +10,28 @@ const btnElement = document.getElementById('play-button');
 const mainElement = document.querySelector('main');
 const gridElement = getElement('div', 'grid');
 const resultElement = getElement('span', 'result');
-const allBombs = [];
-let numberCells = 100
+
+
 btnElement.addEventListener('click', function(){
    startNewGame();
 });
 
 function startNewGame(){
-    console.clear();
-    mainElement.innerHTML = '';
-    resultElement.innerHTML = '';           //! at each event on the button it resets three dom elements
-    gridElement.innerHTML = '';
-    mainElement.appendChild(gridElement);
+    const allBombs = []; // the array will contain every bomb in a cell
+    let numberCells = 100;
     const bombList = bombGenerator('bombList', 16, numberCells);
     let inGame = true;
     let rightCounter = 0;
+
+    console.clear();
+
+    mainElement.innerHTML = '';
+    resultElement.innerHTML = '';           //! at each event on the button it resets three dom elements
+    gridElement.innerHTML = '';
+
+    mainElement.appendChild(gridElement);
+
+    
     for(let i = 1; i <= 100; i++){
         const divElement = getElement('div', 'cell');
         if(bombList.includes(i)){
@@ -39,14 +46,7 @@ function startNewGame(){
             
             if(bombList.includes(i)){
                 
-                
-                // for(let b = 0; b < bombList.length; b++){
-                //     allBombs.classList.add('explode');
-                //     allBombs.innerHTML += `<i class="fa-solid fa-bomb"></i>`;
-                // }
-                // allBombs.innerHTML += `<i class="fa-solid fa-bomb"></i>`;
-                // allBombs.classList.remove('d-none');
-                // *this.innerHTML += `<i class="fa-solid fa-bomb"></i>`;
+                // *this.innerHTML += `<i class="fa-solid fa-bomb"></i>`; // Show only one bomb when losing the game
                 // *this.classList.add('explode');
 
                 
